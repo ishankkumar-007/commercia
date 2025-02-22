@@ -1,26 +1,102 @@
 {% extends 'base.html' %}
 
-{% block title %}Featured Products{% endblock %}
+{% block title %}Home - Modern E-commerce{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="page-title">Featured Products</h1>
+<header class="hero">
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/img1.jpg') }}" alt="Slide 1">
+            <div class="slide-text">
+                <h1>Discover the Best Products</h1>
+                <p>Shop the latest trends with a seamless shopping experience.</p>
+            </div>
+        </div>
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/img2.jpg') }}" alt="Slide 2">
+            <div class="slide-text">
+                <!-- <h1>Exclusive Deals Just for You</h1> -->
+                <!-- <p>Find discounts on your favorite brands.</p> -->
+            </div>
+        </div>
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/imh3.jpg') }}" alt="Slide 3">
+            <div class="slide-text">
+                <!-- <h1>Fast & Secure Delivery</h1> -->
+                <!-- <p>Get your products delivered safely and quickly.</p> -->
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Navigation Dots -->
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+</header>
+
+<section class="container">
+    <h2 class="section-title">Featured Products</h2>
     <div class="products">
         {% for product in random_products %}
             <div class="product-card">
-                <h2 class="product-title">{{ product['Product_name'] }}</h2>
-                <p class="description">{{ product['Description'] }}</p>
-                <div class="images">
-                    {% for image in product['Images'] %}
-                        <img class="product-image" src="{{ image }}" alt="{{ product['Product_name'] }} Image">
-                    {% endfor %}
+                <div class="product-image">
+                    {% if product['Images'] %}
+                        <img src="{{ product['Images'][0] }}" alt="{{ product['Product_name'] }}">
+                    {% else %}
+                        <img src="placeholder.jpg" alt="Placeholder">
+                    {% endif %}
                 </div>
-                <div class="product-buttons">
-                    <button class="btn view-details">View Details</button>
-                    <button class="btn add-to-cart">Add to Cart</button>
+                <div class="product-info">
+                    <h3 class="product-title">{{ product['Product_name'] }}</h3>
+                    <p class="description">{{ product['Description'] }}</p>
+                    <div class="product-buttons">
+                        <a href="#" class="btn secondary">View Details</a>
+                        <a href="#" class="btn primary">Add to Cart</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-</div>
+</section>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+
+    setInterval(() => { plusSlides(1); }, 30000); // Auto-slide every 3 seconds
+</script>
+
 {% endblock %}
