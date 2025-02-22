@@ -1,4 +1,4 @@
-from flask import Flask, render_template ,request, redirect, url_for, session
+from flask import Flask, render_template ,request, flash, redirect, url_for, session, jsonify
 from pymongo import MongoClient
 import random
 import os
@@ -40,7 +40,8 @@ def add_to_cart(product_id):
         if item["Product_id"] == product_id:
             item["quantity"] += 1
             session.modified = True
-            return redirect(url_for("cart"))
+            flash("Item quantity updated in cart!", "success")
+            return redirect(request.referrer)  # Redirect back to the same page
 
     # Fetch product details from MongoDB
     product = product_collection.find_one({"Product_id": product_id})
@@ -53,9 +54,12 @@ def add_to_cart(product_id):
             "quantity": 1  # Initialize quantity
         }
         cart.insert(0, new_item)  # Add new item to the beginning of the list
-        session.modified = True  # Save session changes
+        session.modified = True
+        flash("Item added to cart!", "success")
+        return redirect(request.referrer)  # Redirect back to the same page
 
-    return redirect(url_for("cart"))
+    flash("Product not found!", "error")
+    return redirect(request.referrer)
 
 @app.route("/update_cart/<product_id>/<action>")
 def update_cart(product_id, action):
