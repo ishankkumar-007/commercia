@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% extends 'base.html' %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<h2>Your Cart</h2>
+
+{% if cart_items %}
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+            <th>Remove</th>
+        </tr>
+        {% for item in cart_items %}
+        <tr>
+            <td><img src="{{ item['Images'] }}" alt="{{ item['Product_name'] }}" width="50"></td>
+            <td>{{ item['Product_name'] }}</td>
+            <td>{{ item['quantity'] }}</td>
+            <td>
+                <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='increase') }}">+</a>
+                <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='decrease') }}">-</a>
+            </td>
+            <td>
+                <a href="{{ url_for('remove_from_cart', product_id=item['Product_id']) }}">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <div class="empty-cart">
+        <img src="{{ url_for('static', filename='images/empty-cart.png') }}" alt="Empty Cart">
+        <p>Your cart is empty.</p>
+        <a href="{{ url_for('index') }}" class="btn primary">Continue Shopping</a>
+    </div>
+{% endif %}
+
+{% endblock %}

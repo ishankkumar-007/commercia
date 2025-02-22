@@ -1,0 +1,127 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Table Styling */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Image Styling */
+td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Action Buttons */
+a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* Quantity Buttons */
+td a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: white;
+    background-color: #28a745;
+    border-radius: 5px;
+}
+
+td a:last-child {
+    background-color: #dc3545;
+}
+
+/* Remove Button */
+td a[href*="remove_from_cart"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Continue Shopping Button */
+a[href*="index"] {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+a[href*="index"]:hover {
+    background-color: #0056b3;
+}
+.empty-cart {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.empty-cart img {
+    width: 150px;
+    height: auto;
+    opacity: 0.7;
+}
+
+.empty-cart p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.empty-cart .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.empty-cart .btn:hover {
+    background-color: #e65c00;
+}

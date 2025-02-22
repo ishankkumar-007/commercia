@@ -57,8 +57,8 @@
                     <p class="description">{{ product['Description'] }}</p>
                     <div class="product-buttons">
                         <a href="#" class="btn secondary">View Details</a>
-                        <a href="#" class="btn primary">Add to Cart</a>
-                    </div>
+                        <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="btn primary">Add to Cart</a>
+                    </div>                    
                 </div>
             </div>
         {% endfor %}
