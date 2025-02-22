@@ -45,13 +45,14 @@ def add_to_cart(product_id):
     # Fetch product details from MongoDB
     product = product_collection.find_one({"Product_id": product_id})
     if product:
-        cart.append({
+        new_item = {
             "Product_id": product["Product_id"],
             "Product_name": product["Product_name"],
             "Description": product["Description"],
             "Images": product["Images"][0],  # Take first image
             "quantity": 1  # Initialize quantity
-        })
+        }
+        cart.insert(0, new_item)  # Add new item to the beginning of the list
         session.modified = True  # Save session changes
 
     return redirect(url_for("cart"))
