@@ -1,6 +1,26 @@
-{% extends 'base.html' %} {% block content %}
-<h1>{% block title %} Index {% endblock %}</h1>
-<h1>Hello World!</h1>
-<h2>Welcome to FlaskApp!</h2>
-<h3>{{ utc_dt }}</h3>
+{% extends 'base.html' %}
+
+{% block title %}Featured Products{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Featured Products</h1>
+    <div class="products">
+        {% for product in random_products %}
+            <div class="product-card">
+                <h2 class="product-title">{{ product['Product_name'] }}</h2>
+                <p class="description">{{ product['Description'] }}</p>
+                <div class="images">
+                    {% for image in product['Images'] %}
+                        <img class="product-image" src="{{ image }}" alt="{{ product['Product_name'] }} Image">
+                    {% endfor %}
+                </div>
+                <div class="product-buttons">
+                    <button class="btn view-details">View Details</button>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
