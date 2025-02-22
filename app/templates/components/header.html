@@ -1,21 +1,118 @@
 <nav class="navbar">
-  <div class="company-name">IsnFrames.</div>
+  <div class="company-name"><a href="{{ url_for('index') }}" class="company-name">IsnFrames.</a></div>
   <ul class="nav-links">
-      <li><a href="{{ url_for('index') }}">Home</a></li>
-      <li><a href="#">Shop</a></li>
-      <li><a href="#">Categories</a></li>
-      <li><a href="{{ url_for('cart') }}">Cart 🛒</a></li>
-      <li><a href="#">Profile 👤</a></li>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search products..." onkeyup="showSuggestions(this.value)">
+      <ul id="suggestions"></ul>
+    </div>
+
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+
+    <!-- Shop Dropdown -->
+    <li class="dropdown">
+      <a href="#">Shop ▼</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">Discounts</a></li>
+        <li><a href="#">Custom Orders</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </li>
+
+    <!-- Categories Dropdown -->
+    <li class="dropdown">
+      <a href="#">Categories ▼</a>
+      <ul class="dropdown-menu">
+        <li class="submenu">
+          <a href="#">Fashion →</a>
+          <ul class="submenu-menu">
+            <li><a href="#">Men's Clothing</a></li>
+            <li><a href="#">Women's Clothing</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Footwear</a></li>
+            <li><a href="#">Bags & Wallets</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#">Electronics →</a>
+          <ul class="submenu-menu">
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Headphones</a></li>
+            <li><a href="#">Wearables</a></li>
+            <li><a href="#">Gaming</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#">Home Decor →</a>
+          <ul class="submenu-menu">
+            <li><a href="#">Wall Frames</a></li>
+            <li><a href="#">Canvas Prints</a></li>
+            <li><a href="#">Poster Frames</a></li>
+            <li><a href="#">Furniture</a></li>
+            <li><a href="#">Lamps & Lighting</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#">Beauty & Health →</a>
+          <ul class="submenu-menu">
+            <li><a href="#">Skincare</a></li>
+            <li><a href="#">Haircare</a></li>
+            <li><a href="#">Makeup</a></li>
+            <li><a href="#">Personal Care</a></li>
+            <li><a href="#">Supplements</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#">Sports & Outdoors →</a>
+          <ul class="submenu-menu">
+            <li><a href="#">Fitness Equipment</a></li>
+            <li><a href="#">Camping & Hiking</a></li>
+            <li><a href="#">Cycling</a></li>
+            <li><a href="#">Sportswear</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li><a href="{{ url_for('cart') }}">Cart 🛒</a></li>
+
+
+    <!-- Profile Dropdown -->
+    <li class="dropdown">
+      <a href="#">Profile 👤 ▼</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">View Profile</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </li>
+    <!-- Three-Dot Menu -->
+    <li class="three-dot-menu">
+      <span class="menu-icon">⋮</span>
+      <ul class="three-dot-dropdown">
+        <li><a href="#">Track Order 🚚</a></li>
+        <li><a href="#">Customer Support 📞</a></li>
+      </ul>
+    </li>
+
   </ul>
+
 </nav>
 
+
 <style>
- .navbar {
+  /* Navbar Styles */
+  .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 40px;
-    background: linear-gradient(135deg, #fff, #fff); /* Soft gradient */
+    background: linear-gradient(135deg, #fff, #fff);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -23,10 +120,10 @@
     left: 0;
     z-index: 1000;
     box-sizing: border-box;
-}
+  }
 
-/* Company Name */
-.company-name {
+  /* Company Name */
+  .company-name {
     font-size: 1.8rem;
     font-weight: bold;
     color: #000;
@@ -34,20 +131,21 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     cursor: pointer;
-}
+    text-decoration: none; 
+  }
 
-/* Navigation Links */
-.nav-links {
+  /* Navigation Links */
+  .nav-links {
     display: flex;
     list-style: none;
     gap: 20px;
-}
+  }
 
-.nav-links li {
-    display: inline;
-}
+  .nav-links li {
+    position: relative;
+  }
 
-.nav-links a {
+  .nav-links a {
     text-decoration: none;
     color: #000;
     font-size: 1.1rem;
@@ -56,12 +154,200 @@
     padding: 8px 15px;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
-}
+  }
 
-/* Hover Effect */
-.nav-links a:hover {
+  /* Dropdown Menu */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 10;
+  }
+
+  .dropdown-menu li {
+    display: block;
+    position: relative;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(179, 164, 164, 0.2);
+  }
+
+  /* Show Dropdown on Hover */
+  .nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* Submenu Styling */
+  .submenu-menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 10;
+  }
+
+  .submenu:hover .submenu-menu {
+    display: block;
+  }
+
+  /* Hover Effect */
+  .nav-links a:hover {
     background: rgba(179, 164, 164, 0.2);
     transform: scale(1.05);
-}
+  }
 
+  .search-container {
+    position: relative;
+  }
+
+  #search {
+    width: 1000px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    width: 1000px;
+  }
+
+  #suggestions li {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  #suggestions li:hover {
+    background: rgba(179, 164, 164, 0.2);
+  }
+
+  /* Three-Dot Menu */
+  /* Three-Dot Menu */
+  .three-dot-menu {
+    position: relative;
+    cursor: pointer;
+    padding: 0px;
+    top: -10px;
+  }
+
+  /* Icon Style */
+  .menu-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0px;
+    display: block;
+  }
+
+  /* Dropdown Styling */
+  .three-dot-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 180px;
+    padding: 10px 0;
+    list-style: none;
+    z-index: 100;
+  }
+
+  /* Dropdown List Items */
+  .three-dot-dropdown li {
+    padding: 10px 15px;
+    text-align: left;
+  }
+
+  .three-dot-dropdown a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .three-dot-dropdown a:hover {
+    background: rgba(179, 164, 164, 0.2);
+  }
+
+  /*  Show Dropdown on Hover */
+  .three-dot-menu:hover .three-dot-dropdown {
+    display: block;
+  }
 </style>
+<script>
+  const sampleProducts = ["Smartphones", "Laptops", "Wall Frames", "Makeup", "Fitness Equipment"];
+
+  function showSuggestions(value) {
+    let suggestions = document.getElementById("suggestions");
+    suggestions.innerHTML = "";
+
+    if (!value) {
+      suggestions.style.display = "none";
+      return;
+    }
+
+    let matches = sampleProducts.filter(item => item.toLowerCase().includes(value.toLowerCase()));
+
+    if (matches.length > 0) {
+      suggestions.style.display = "block";
+      matches.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item;
+        li.onclick = () => { document.getElementById("search").value = item; suggestions.style.display = "none"; };
+        suggestions.appendChild(li);
+      });
+    } else {
+      suggestions.style.display = "none";
+    }
+
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.querySelector(".menu-icon");
+    const dropdown = document.querySelector(".three-dot-dropdown");
+
+    if (menuIcon && dropdown) {
+      menuIcon.addEventListener("click", function (event) {
+        console.log("Menu clicked");  // Debugging step
+        dropdown.classList.toggle("show-menu");
+        event.stopPropagation(); // Prevents closing immediately
+      });
+
+      // Close the menu if clicked outside
+      document.addEventListener("click", function (event) {
+        if (!menuIcon.contains(event.target) && !dropdown.contains(event.target)) {
+          dropdown.classList.remove("show-menu");
+        }
+      });
+    } else {
+      console.error("Menu icon or dropdown not found.");
+    }
+  });
+</script>
