@@ -6,7 +6,7 @@
   "repository": "https://github.com/ishankkumar-007/commercia.git",
   "author": "Ishank Kumar <ishankkumar123@gmail.com>",
   "scripts": {
-    "css": "npx tailwindcss -i ./app/static/src/styles.css -o ./app/static/css/main.css --minify --watch",
+    "css": "npx tailwindcss -i ./app/static/src/styles.css -o ./app/static/css/tail.css --minify --watch",
     "app": "python run.py"
   },
   "license": "MIT",
