@@ -1,41 +1,54 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
 {% extends 'base.html' %}
 
 {% block title %}Shopping Cart{% endblock %}
 
 {% block content %}
-<h2>Your Cart</h2>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
 
-{% if cart_items %}
-    <table>
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-            <th>Remove</th>
-        </tr>
+<div class="cart-container">
+    <h2>Shopping Cart</h2>
+    <hr>
+
+    {% if cart_items %}
         {% for item in cart_items %}
-        <tr>
-            <td><img src="{{ item['Images'] }}" alt="{{ item['Product_name'] }}" width="50"></td>
-            <td>{{ item['Product_name'] }}</td>
-            <td>{{ item['quantity'] }}</td>
-            <td>
-                <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='increase') }}">+</a>
-                <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='decrease') }}">-</a>
-            </td>
-            <td>
-                <a href="{{ url_for('remove_from_cart', product_id=item['Product_id']) }}">Remove</a>
-            </td>
-        </tr>
+        <div class="cart-item">
+            <img src="{{ item['Images'] }}" alt="{{ item['Product_name'] }}" class="cart-img">
+
+            <div class="cart-details">
+                <h3>{{ item['Product_name'] }}</h3>
+                <p class="stock-status">In Stock</p>
+                <p class="color">Color: White, Multi-color</p>
+
+                <div class="cart-actions">
+                    <a href="{{ url_for('remove_from_cart', product_id=item['Product_id']) }}" class="delete-btn">🗑</a>
+                    
+                    <div class="quantity-selector">
+                        <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='decrease') }}" class="qty-btn">−</a>
+                        <span class="qty">{{ item['quantity'] }}</span>
+                        <a href="{{ url_for('update_cart', product_id=item['Product_id'], action='increase') }}" class="qty-btn">+</a>
+                    </div>
+
+                    <a href="#" class="save-later">Save for later</a>
+                </div>
+            </div>
+
+            <div class="cart-price">
+                <strong>${{ item['price'] }}</strong>
+            </div>
+        </div>
+        <hr>
         {% endfor %}
-    </table>
-{% else %}
-    <div class="empty-cart">
-        <img src="{{ url_for('static', filename='images/empty-cart.png') }}" alt="Empty Cart">
-        <p>Your cart is empty.</p>
-        <a href="{{ url_for('index') }}" class="btn primary">Continue Shopping</a>
-    </div>
-{% endif %}
+
+        <div class="cart-subtotal">
+            <strong>Subtotal ({{ cart_items|length }} item{{ cart_items|length > 1 and 's' or '' }}):</strong> 
+            <span class="subtotal-price">${{ subtotal }}</span>
+        </div>
+
+    {% else %}
+        <p class="empty-cart">Your cart is empty. 🛍</p>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn-primary">🛒 Continue Shopping</a>
+</div>
 
 {% endblock %}
