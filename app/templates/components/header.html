@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <div class="company-name">IsnFrames.</div>
+  <div class="company-name"><a href="{{ url_for('index') }}" class="company-name">IsnFrames.</a></div>
   <ul class="nav-links">
     <div class="search-container">
       <input type="text" id="search" placeholder="Search products..." onkeyup="showSuggestions(this.value)">
@@ -131,6 +131,7 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     cursor: pointer;
+    text-decoration: none; 
   }
 
   /* Navigation Links */
