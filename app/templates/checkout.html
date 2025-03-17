@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+
+<div class="checkout-container">
+    <h2>Checkout</h2>
+    <hr>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h3>Order Summary</h3>
+        {% for item in cart_items %}
+        <div class="order-item">
+            <img src="{{ item['Images'] }}" alt="{{ item['Product_name'] }}" class="order-img">
+            <div>
+                <p><strong>{{ item['Product_name'] }}</strong></p>
+                <p>Qty: {{ item['quantity'] }}</p>
+                <p class="price">
+                    {% if item['discounted_price'] < item['original_price'] %}
+                        ₹{{ item['discounted_price'] }} <span class="original-price">₹{{ item['original_price'] }}</span>
+                    {% else %}
+                        ₹{{ item['original_price'] }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+        <p>Subtotal: <strong>₹{{ subtotal }}</strong></p>
+        <p>Shipping: <strong>₹{{ shipping_fee }}</strong></p>
+        <p class="total">Total: <strong>₹{{ total }}</strong></p>
+    </div>
+
+    <!-- Fake Payment Form -->
+    <form method="POST" action="{{ url_for('order_confirmation') }}" class="checkout-form">
+        <h3>Shipping Details</h3>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" name="address" placeholder="Shipping Address" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="pincode" placeholder="Pincode" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+
+        <h3>Payment Details</h3>
+        <input type="text" name="card_name" placeholder="Cardholder Name" required>
+        <input type="text" name="card_number" placeholder="Card Number" maxlength="16" required>
+        <div class="card-info">
+            <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
+            <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
+        </div>
+
+        <button type="submit" class="btn-primary">💳 Pay Now</button>
+    </form>
+
+    <a href="{{ url_for('cart') }}" class="btn-secondary">← Back to Cart</a>
+</div>
+
+{% endblock %}
