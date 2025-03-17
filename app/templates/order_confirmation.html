@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Confirmation{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/order_confirmation.css') }}">
+
+<div class="confirmation-container">
+    <h2>✅ Order Placed Successfully!</h2>
+    <p>Thank you for your order. We will notify you once it is shipped.</p>
+    
+    <div class="order-details">
+        <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+        <p><strong>Estimated Delivery:</strong> <span id="delivery-date"></span></p>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn-primary">🏠 Go to Home</a>
+</div>
+
+<script >
+    document.addEventListener("DOMContentLoaded", function () {
+    // Generate random order ID
+    let orderId = "ORD" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("order-id").innerText = orderId;
+
+    // Set estimated delivery date (3-7 days from today)
+    let deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + Math.floor(Math.random() * 5) + 3);
+    document.getElementById("delivery-date").innerText = deliveryDate.toDateString();
+});
+
+</script>
+{% endblock %}
