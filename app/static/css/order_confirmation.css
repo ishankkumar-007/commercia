@@ -1,3 +1,4 @@
+/* Order Confirmation Container */
 .confirmation-container {
     max-width: 500px;
     margin: 100px auto 20px;
@@ -6,6 +7,88 @@
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animated Checkmark Circle */
+.checkmark-circle {
+    width: 100px;
+    height: 100px;
+    background: #28a745;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    position: relative;
+    animation: popIn 0.5s ease-out forwards;
+}
+
+/* Checkmark */
+.checkmark {
+    width: 25px;
+    height: 50px;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: 32%;
+    left: 50%;
+    transform: translate(-50%, 10%) rotate(45deg);
+    opacity: 0;
+    animation: drawCheckmark 0.5s 0.3s ease-in-out forwards;
+}
+
+/* Animations */
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes drawCheckmark {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 25px;
+        height: 50px;
+        opacity: 1;
+    }
+}
+
+/* Text Styles */
+h2 {
+    color: green;
+}
+
+.order-details {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    display: block;
+    width: 90%;
+    max-width: 300px; /* Prevents button from becoming too wide */
+    margin: 20px auto 0;
+    padding: 10px;
+    background: #FFA41C;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background: #e67e22;
 }
 
 h2 {
