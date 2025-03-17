@@ -115,7 +115,28 @@ def product_details(product_id):
         return render_template('view_details.html', product=product)
 
     return "Product Not Found", 404
+@app.route("/checkout", methods=["GET", "POST"])
+def checkout():
+    cart_items = session.get("cart", [])
+    
+    if not cart_items:
+        flash("Your cart is empty!", "error")
+        return redirect(url_for("cart"))
 
+    subtotal = sum(item.get("discounted_price", item.get("original_price", 0)) * item["quantity"] for item in cart_items)
+    shipping_fee = 50 if subtotal < 1000 else 0  # Free shipping for orders above ₹1000
+    total = subtotal + shipping_fee
+
+    if request.method == "POST":
+        flash("Order placed successfully! 🎉", "success")
+        session["cart"] = []  # Clear the cart after checkout
+        session.modified = True
+        return redirect(url_for("index"))
+
+    return render_template("checkout.html", cart_items=cart_items, subtotal=subtotal, shipping_fee=shipping_fee, total=total)
+@app.route('/order-confirmation', methods=['POST'])
+def order_confirmation():
+    return render_template('order_confirmation.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
