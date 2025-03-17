@@ -101,20 +101,23 @@
                 <h3>Customer Ratings & Reviews</h3>
                 <p class="rating-score">⭐ {{ product.get('Rating', 'N/A') }}/5</p>
 
-                <ul class="reviews">
+                <ul class="reviews-list">
                     {% if product.get('Customer_Reviews') %}
                     {% for review in product['Customer_Reviews'] %}
-                    <li>
-                        <strong>{{ review.Customer }}</strong>
-                        ⭐ {{ review.Rating }}/5
-                        <p>{{ review.Review }}</p>
+                    <li class="review-box">
+                        <div class="review-header">
+                            <span class="review-user">{{ review.Customer }}</span>
+                            <span class="review-rating">⭐ {{ review.Rating }}/5</span>
+                        </div>
+                        <p class="review-text">{{ review.Review }}</p>
                     </li>
                     {% endfor %}
                     {% else %}
-                    <li>No reviews available</li>
+                    <li class="review-box">No reviews available</li>
                     {% endif %}
                 </ul>
             </div>
+
         </div>
     </div>
 </div>

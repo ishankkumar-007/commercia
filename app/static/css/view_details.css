@@ -242,29 +242,61 @@ body {
 }
 
 /* Customer Reviews */
+/* Customer Reviews */
 .reviews {
     margin-top: 20px;
     padding: 15px;
 }
 
 .reviews h3 {
-    font-size: 18px;
-    color: #444;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
+/* Grid Layout for Reviews */
 .reviews-list {
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column */
+    gap: 15px;
     padding: 0;
 }
 
+/* Individual Review Box */
 .reviews-list li {
-    background: #fafafa;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    border-left: 4px solid #ff8c42;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0; /* Light border for separation */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05); /* Soft shadow for better visibility */
+    list-style-type: none; /* Remove bullet points */
 }
 
+/* Review Header */
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.review-user {
+    font-weight: bold;
+    color: #222;
+}
+
+.review-rating {
+    color: #ffba00; /* Gold color for stars */
+    font-weight: bold;
+}
+
+/* Review Text */
+.review-text {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.4;
+}
 /* Delivery Section */
 .delivery {
     margin-top: 20px;
