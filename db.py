@@ -288,6 +288,7 @@ products = [
         "Product_id": f"Prod{101 + i}",
         "Product_name": name,
         "Description": desc,
+        "Detailed_Description": detailed_desc,
         "Images": [f"/static/images/{img1}", f"/static/images/{img2}"],
         "original_price": original_price,
         "discounted_price": discounted_price,
@@ -298,27 +299,27 @@ products = [
         "Rating": round(uniform(3.5, 5), 1),  # Random rating between 3.5 and 5
         "Customer_Reviews": [choice(customer_reviews) for _ in range(randint(3, 5))]  # Random reviews (1 to 5)
     }
-    for i, (name, desc, img1, img2, original_price, discounted_price) in enumerate([
-        ("Laptop", "High-performance laptop with the latest processor", "laptop1.jpg", "laptop2.jpg", 1200, 999),
-        ("Smartphone", "Latest model smartphone with AI-powered camera", "phone1.jpg", "phone2.jpg", 800, 699),
-        ("Wireless Headphones", "Noise-canceling over-ear headphones with deep bass", "headphones1.jpg", "headphones2.jpg", 150, 119),
-        ("Gaming Mouse", "High DPI gaming mouse with RGB lighting", "mouse1.jpg", "mouse2.jpg", 60, 49),
-        ("Mechanical Keyboard", "RGB mechanical keyboard with blue switches", "keyboard1.jpg", "keyboard2.jpg", 100, 79),
-        ("Smartwatch", "Fitness tracking smartwatch with heart rate monitoring", "smartwatch1.jpg", "smartwatch2.jpg", 200, 159),
-        ("Bluetooth Speaker", "Portable Bluetooth speaker with waterproof design", "speaker1.jpg", "speaker2.jpg", 120, 89),
-        ("External Hard Drive", "1TB external hard drive with fast transfer speeds", "harddrive1.jpg", "harddrive2.jpg", 90, 69),
-        ("Wireless Earbuds", "Compact earbuds with noise isolation", "earbuds1.jpg", "earbuds2.jpg", 140, 109),
-        ("4K Monitor", "27-inch 4K UHD monitor with HDR", "monitor1.jpg", "monitor2.jpg", 350, 299),
-        ("VR Headset", "Next-gen VR headset with immersive experience", "vr1.jpg", "vr2.jpg", 500, 449),
-        ("Action Camera", "Waterproof 4K action camera", "actioncam1.jpg", "actioncam2.jpg", 250, 199),
-        ("Smart Home Hub", "Voice-controlled smart home hub", "smarthub1.jpg", "smarthub2.jpg", 180, 149),
-        ("Drone", "Compact drone with 4K camera", "drone1.jpg", "drone2.jpg", 600, 499),
-        ("Portable Projector", "Mini HD projector with Wi-Fi", "projector1.jpg", "projector2.jpg", 250, 199),
-        ("Smart Light Bulbs", "Wi-Fi LED bulbs with colors", "lightbulb1.jpg", "lightbulb2.jpg", 50, 39),
-        ("Electric Toothbrush", "Rechargeable toothbrush with modes", "toothbrush1.jpg", "toothbrush2.jpg", 80, 59),
-        ("Dash Cam", "Full HD dash cam with night vision", "dashcam1.jpg", "dashcam2.jpg", 150, 129),
-        ("Wireless Charger", "Fast wireless charging pad", "charger1.jpg", "charger2.jpg", 40, 29),
-        ("Robot Vacuum Cleaner", "Smart vacuum with mapping", "robotvacuum1.jpg", "robotvacuum2.jpg", 450, 399)
+    for i, (name, desc, detailed_desc,img1, img2, original_price, discounted_price) in enumerate([
+        ("Laptop", "High-performance laptop with the latest processor", "Experience unparalleled speed and efficiency with this powerful laptop. Equipped with the latest Intel i9 13th Gen processor and an NVIDIA RTX 4070 graphics card, it handles multitasking, gaming, and professional applications effortlessly. The stunning 15.6-inch 4K OLED display provides crystal-clear visuals, making it ideal for creative professionals. With a lightweight aluminum body, all-day battery life, and advanced cooling technology, this laptop is built for performance on the go.","laptop1.jpg", "laptop2.jpg", 1200, 999),
+        ("Smartphone", "Latest model smartphone with AI-powered camera", "This next-gen smartphone is designed for power users. With a massive 108MP triple-camera setup, AI enhancements, and 8K video recording, it delivers professional-quality photos and videos. The 6.7-inch 120Hz AMOLED display ensures vibrant colors and ultra-smooth scrolling. Powered by the Snapdragon 8 Gen 2 processor and 12GB RAM, it handles any task with ease. 5G connectivity, wireless charging, and a long-lasting 5000mAh battery make this phone an excellent choice for modern users.","phone1.jpg", "phone2.jpg", 800, 699),
+        ("Wireless Headphones", "Noise-canceling over-ear headphones with deep bass", "Immerse yourself in superior audio quality with these wireless noise-canceling headphones. Featuring adaptive noise cancellation, a comfortable over-ear design, and 30-hour battery life, these headphones are perfect for travel, work, and relaxation. With advanced Bluetooth 5.2 connectivity, a built-in mic, and premium sound tuning, they deliver an unmatched listening experience.","headphones1.jpg", "headphones2.jpg", 150, 119),
+        ("Gaming Mouse", "High DPI gaming mouse with RGB lighting","High DPI gaming mouse with RGB lighting", "mouse1.jpg", "mouse2.jpg", 60, 49),
+        ("Mechanical Keyboard", "RGB mechanical keyboard with blue switches","RGB mechanical keyboard with blue switches", "keyboard1.jpg", "keyboard2.jpg", 100, 79),
+        ("Smartwatch", "Fitness tracking smartwatch with heart rate monitoring","Fitness tracking smartwatch with heart rate monitoring", "smartwatch1.jpg", "smartwatch2.jpg", 200, 159),
+        ("Bluetooth Speaker", "Portable Bluetooth speaker with waterproof design", "Portable Bluetooth speaker with waterproof design", "speaker1.jpg", "speaker2.jpg", 120, 89),
+        ("External Hard Drive", "1TB external hard drive with fast transfer speeds", "1TB external hard drive with fast transfer speeds", "harddrive1.jpg", "harddrive2.jpg", 90, 69),
+        ("Wireless Earbuds", "Compact earbuds with noise isolation","Compact earbuds with noise isolation", "earbuds1.jpg", "earbuds2.jpg", 140, 109),
+        ("4K Monitor", "27-inch 4K UHD monitor with HDR","27-inch 4K UHD monitor with HDR", "monitor1.jpg", "monitor2.jpg", 350, 299),
+        ("VR Headset", "Next-gen VR headset with immersive experience","Next-gen VR headset with immersive experience", "vr1.jpg", "vr2.jpg", 500, 449),
+        ("Action Camera", "Waterproof 4K action camera", "Waterproof 4K action camera", "actioncam1.jpg", "actioncam2.jpg", 250, 199),
+        ("Smart Home Hub", "Voice-controlled smart home hub","Voice-controlled smart home hub", "smarthub1.jpg", "smarthub2.jpg", 180, 149),
+        ("Drone", "Compact drone with 4K camera", "Compact drone with 4K camera", "drone1.jpg", "drone2.jpg", 600, 499),
+        ("Portable Projector", "Mini HD projector with Wi-Fi","Mini HD projector with Wi-Fi", "projector1.jpg", "projector2.jpg", 250, 199),
+        ("Smart Light Bulbs", "Wi-Fi LED bulbs with colors","Wi-Fi LED bulbs with colors", "lightbulb1.jpg", "lightbulb2.jpg", 50, 39),
+        ("Electric Toothbrush", "Rechargeable toothbrush with modes",  "Rechargeable toothbrush with modes", "toothbrush1.jpg", "toothbrush2.jpg", 80, 59),
+        ("Dash Cam", "Full HD dash cam with night vision", "Full HD dash cam with night vision", "dashcam1.jpg", "dashcam2.jpg", 150, 129),
+        ("Wireless Charger", "Fast wireless charging pad","Fast wireless charging pad", "charger1.jpg", "charger2.jpg", 40, 29),
+        ("Robot Vacuum Cleaner", "Smart vacuum with mapping", "Smart vacuum with mapping", "robotvacuum1.jpg", "robotvacuum2.jpg", 450, 399)
     ])
 ]
 
