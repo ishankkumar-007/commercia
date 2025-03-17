@@ -9,52 +9,48 @@
     <div class="product-details">
         <!-- Left: Image Gallery -->
         <div class="image-gallery">
-            <!-- <div class="thumbnail-list">
-                {% if product.get('Images') %}
-                    {% for image in product['Images'] %}
-                    <img src="{{ url_for('static', filename='images/' + image) }}" alt="Thumbnail" class="thumbnail" onclick="updateMainImage(this)">
-                    {% endfor %}
-                {% else %}
-                    <p>No Images Available</p>
-                {% endif %}
-            </div> -->
             <div class="main-image">
-                <img id="mainImage" src="{{ product['Images'][0] }}" alt="{{ product.Product_name }}">
+                <img id="mainImage" src="{{ product['Images'][0] }}" alt="{{ product['Product_name'] }}">
+            </div>
 
-
+            <!-- Buttons Below Image -->
+            <div class="image-buttons">
+                <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="add-to-cart">
+                    🛒 ADD TO CART
+                </a>
+                <button class="buy-now">⚡ BUY NOW</button>
             </div>
         </div>
 
         <!-- Right: Product Info -->
         <div class="info-section">
             <h1>{{ product.get('Product_name', 'Unknown Product') }}</h1>
+
+            <!-- Price Section -->
             <div class="price-section">
                 <span class="current-price">₹{{ product.get('discounted_price', 'N/A') }}</span>
                 <span class="original-price">₹{{ product.get('original_price', 'N/A') }}</span>
                 <span class="discount">{{ product.get('discount', 0) }}% off</span>
             </div>
-            <p class="description">{{ product.get('Description', 'No description available') }}</p>
 
-            <!-- Buttons -->
-            <div class="buttons">
-                <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="add-to-cart">
-                    🛒 ADD TO CART
-                </a>
-                
-                <button class="buy-now">⚡ BUY NOW</button>
-            </div>
+            <!-- Availability -->
+            <p class="availability">
+                <strong>Status:</strong>
+                <span class="{{ 'in-stock' if product['Available'] == 'In Stock' else 'out-of-stock' }}">
+                    {{ product.get('Available', 'Unknown') }}
+                </span>
+            </p>
+
+            <!-- Description -->
+            <p class="description">{{ product.get('Description', 'No description available') }}</p>
 
             <!-- Offers -->
             <div class="offers">
-                <h3>Available Offers</h3>
+                <h4>Special Offers:</h4>
                 <ul>
-                    {% if product.get('offers') %}
-                        {% for offer in product['offers'] %}
-                        <li>✅ {{ offer }}</li>
-                        {% endfor %}
-                    {% else %}
-                        <li>No Offers Available</li>
-                    {% endif %}
+                    {% for offer in product.get('Offers', []) %}
+                    <li>✅ {{ offer }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
@@ -63,7 +59,61 @@
                 <label>Enter Delivery Pincode:</label>
                 <input type="text" placeholder="Enter pincode">
                 <button>Check</button>
-                <p class="delivery-info">Delivery by <strong>20th Mar</strong> | <span class="free-delivery">FREE</span></p>
+                <p class="delivery-info">Delivery by <strong>20th Mar</strong> | <span class="free-delivery">FREE</span>
+                </p>
+            </div>
+
+            <!-- Specifications Section -->
+            <div class="specifications">
+                <h3>Specifications</h3>
+
+                {% if product.get('Specifications') %}
+                {% set specs_list = product['Specifications'].items() | list %}
+                {% set split_index = specs_list | length // 2 %}
+
+                <!-- General Specifications -->
+                <div class="spec-section">
+                    <h4>General</h4>
+                    <ul>
+                        {% for key, value in specs_list[:split_index] %}
+                        <li><strong>{{ key }}:</strong> <span>{{ value }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Product Details Specifications -->
+                <div class="spec-section">
+                    <h4>Product Details</h4>
+                    <ul>
+                        {% for key, value in specs_list[split_index:] %}
+                        <li><strong>{{ key }}:</strong> <span>{{ value }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {% else %}
+                <p>No specifications available</p>
+                {% endif %}
+            </div>
+
+            <!-- Ratings & Reviews -->
+            <div class="ratings">
+                <h3>Customer Ratings & Reviews</h3>
+                <p class="rating-score">⭐ {{ product.get('Rating', 'N/A') }}/5</p>
+
+                <ul class="reviews">
+                    {% if product.get('Customer_Reviews') %}
+                    {% for review in product['Customer_Reviews'] %}
+                    <li>
+                        <strong>{{ review.Customer }}</strong>
+                        ⭐ {{ review.Rating }}/5
+                        <p>{{ review.Review }}</p>
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    <li>No reviews available</li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </div>
