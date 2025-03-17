@@ -205,12 +205,13 @@ body {
 /* View Details */
 .btn.secondary {
     background: transparent;
-    color: #007BFF;
-    border: 1.5px solid #007BFF;
+    color: #000;
+    text-decoration: none;
+    /* border: 1.5px solid #007BFF; */
 }
 
 .btn.secondary:hover {
-    background: #007BFF;
+    /* background: #007BFF; */
     color: white;
 }
 

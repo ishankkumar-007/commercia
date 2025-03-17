@@ -47,7 +47,9 @@
             <div class="product-card">
                 <div class="product-image">
                     {% if product['Images'] %}
+                        <a href="{{ url_for('product_details', product_id=product['Product_id']) }}" class="btn secondary">
                         <img src="{{ product['Images'][0] }}" alt="{{ product['Product_name'] }}">
+                        </a>
                     {% else %}
                         <img src="placeholder.jpg" alt="Placeholder">
                     {% endif %}
@@ -56,9 +58,6 @@
                     <h3 class="product-title">{{ product['Product_name'] }}</h3>
                     <p class="description">{{ product['Description'] }}</p>
                     <div class="product-buttons">
-                        <a href="{{ url_for('product_details', product_id=product['Product_id']) }}" class="btn secondary">
-                            View Details
-                        </a>
                         <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="btn primary">
                             Add to Cart
                         </a>
@@ -66,6 +65,7 @@
                     </div>                    
                 </div>
             </div>
+          <!-- </a> -->
         {% endfor %}
     </div>
 </section>
