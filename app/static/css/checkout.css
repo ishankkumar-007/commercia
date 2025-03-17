@@ -1,0 +1,185 @@
+/* Checkout Container */
+.checkout-container {
+    max-width: 800px;
+    margin: 100px auto 20px; /* Adjusted margin to push it below the navbar */
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h2 {
+    text-align: center;
+    color: #2c3e50; /* Dark blue */
+    margin-bottom: 15px;
+}
+
+h3 {
+    text-align: center;
+    color: #34495e; /* Slightly lighter blue */
+    margin-bottom: 10px;
+}
+
+/* Horizontal Line */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin-bottom: 15px;
+}
+
+/* Order Summary */
+.order-summary {
+    margin-bottom: 20px;
+    /* background: #f4f4f4; */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Order Items */
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+/* Order Images */
+.order-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Pricing Styles */
+.original-price {
+    text-decoration: line-through;
+    color: #e74c3c; /* Red color for discount */
+    margin-left: 5px;
+}
+
+.summary {
+    background: #ecf0f1; /*Light gray */
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Total Price */
+.total {
+    font-size: 20px;
+    color: #e74c3c; /* Red color */
+    font-weight: bold;
+}
+
+/* Checkout Form */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Input Fields */
+.checkout-form input {
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Payment Details */
+.card-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Card Input Fields */
+.card-info input {
+    flex: 1;
+    min-width: 100px;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: #ff8c42; /* Orange */
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #e67e22; /* Darker Orange */
+}
+
+/* Secondary Button (Back to Cart) */
+.btn-secondary {
+    display: block;
+    text-align: center;
+    background: #3498db; /* Blue */
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 97%;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #2980b9; /* Darker Blue */
+}
+
+/* Back Link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+/* Price and Quantity Styling */
+.price {
+    font-size: 16px;
+    color: #27ae60; /* Green color for price */
+    font-weight: bold;
+}
+
+.order-item p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #555; /* Dark gray for general text */
+}
+
+/* Quantity Styling */
+.order-item p:nth-child(2) { /* Targets the 'Qty:' text */
+    color: #d35400; /* Orange-brown for quantity */
+    font-weight: bold;
+}
