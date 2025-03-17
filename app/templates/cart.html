@@ -33,15 +33,20 @@
             </div>
 
             <div class="cart-price">
-                <strong>${{ item['price'] }}</strong>
-            </div>
+                {% if item['discount_price'] and item['discount_price'] < item['original_price'] %}
+                    <strong>₹{{ item['discount_price'] }}</strong>
+                    <span class="original-price">₹{{ item['original_price'] }}</span>
+                {% else %}
+                    <strong>₹{{ item['original_price'] }}</strong>
+                {% endif %}
+            </div>            
         </div>
         <hr>
         {% endfor %}
 
         <div class="cart-subtotal">
             <strong>Subtotal ({{ cart_items|length }} item{{ cart_items|length > 1 and 's' or '' }}):</strong> 
-            <span class="subtotal-price">${{ subtotal }}</span>
+            <span class="subtotal-price">₹{{ subtotal }}</span>
         </div>
 
     {% else %}
