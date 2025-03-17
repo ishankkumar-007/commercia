@@ -56,8 +56,13 @@
                     <h3 class="product-title">{{ product['Product_name'] }}</h3>
                     <p class="description">{{ product['Description'] }}</p>
                     <div class="product-buttons">
-                        <a href="#" class="btn secondary">View Details</a>
-                        <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="btn primary">Add to Cart</a>
+                        <a href="{{ url_for('product_details', product_id=product['Product_id']) }}" class="btn secondary">
+                            View Details
+                        </a>
+                        <a href="{{ url_for('add_to_cart', product_id=product['Product_id']) }}" class="btn primary">
+                            Add to Cart
+                        </a>
+                        
                     </div>                    
                 </div>
             </div>
