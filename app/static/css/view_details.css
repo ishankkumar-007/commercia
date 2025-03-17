@@ -116,6 +116,7 @@ body {
     font-size: 16px;
     color: #555;
     line-height: 1.6;
+    padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;
 }
 
 /* Price Section */
@@ -165,8 +166,8 @@ body {
 
 /* Offers */
 .offers {
-    margin-top: 20px;
-    padding: 15px;
+    /* margin-top: 0px; */
+    /* padding: 10px; */
     border-bottom: 1px solid #e0e0e0;
 }
 

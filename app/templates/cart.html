@@ -49,11 +49,18 @@
             <span class="subtotal-price">₹{{ subtotal }}</span>
         </div>
 
+        <!-- Buttons aligned properly -->
+        <div class="cart-buttons">
+            <a href="{{ url_for('checkout') }}" class="checkout-btn">🛒 Proceed to Checkout</a>
+            <a href="{{ url_for('index') }}" class="btn-secondary">🛍 Continue Shopping</a>
+        </div>
+
     {% else %}
         <p class="empty-cart">Your cart is empty. 🛍</p>
+        <div class="empty-cart-btn">
+            <a href="{{ url_for('index') }}" class="btn-secondary">🛍 Continue Shopping</a>
+        </div>
     {% endif %}
-
-    <a href="{{ url_for('index') }}" class="btn-primary">🛒 Continue Shopping</a>
 </div>
 
 {% endblock %}
