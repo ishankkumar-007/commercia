@@ -141,8 +141,16 @@ body {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    justify-content: space-between; /* Ensures spacing between content */
+    height: 100%; /* Makes sure it takes full height */
+    /* padding: 15px; */
 }
+/* .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+} */
 
 .product-card:hover {
     transform: translateY(-4px);
@@ -216,15 +224,31 @@ body {
 }
 
 /* Add to Cart */
-.btn.primary {
+/* .btn.primary {
     background: #ff5722;
+    margin-top: 2mm;
     color: white;
     border: none;
 }
 
 .btn.primary:hover {
     background: #e64a19;
+} */
+.btn.primary {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: background 0.2s ease-in-out;
 }
+
+.btn.primary:hover {
+    background: #e64a19;
+}
+
 .product-card button {
     font-size: 14px;
     padding: 8px 14px;
