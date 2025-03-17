@@ -1,0 +1,34 @@
+.confirmation-container {
+    max-width: 500px;
+    margin: 100px auto 20px;
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: green;
+}
+
+.order-details {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #FFA41C;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background: #e67e22;
+}
