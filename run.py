@@ -30,7 +30,11 @@ def about():
 @app.route("/cart")
 def cart():
     cart_items = session.get("cart", [])
-    return render_template("cart.html", cart_items=cart_items)
+
+    # Use discount_price if available, otherwise use original_price
+    subtotal = sum(item.get("discount_price", item.get("original_price", 0)) * item["quantity"] for item in cart_items)
+
+    return render_template("cart.html", cart_items=cart_items, subtotal=subtotal)
 
 @app.route("/add_to_cart/<product_id>")
 def add_to_cart(product_id):
@@ -45,25 +49,31 @@ def add_to_cart(product_id):
             item["quantity"] += 1
             session.modified = True
             flash("Item quantity updated in cart!", "success")
-            return redirect(request.referrer)  # Redirect back to the same page
+            return redirect(request.referrer)
 
     # Fetch product details from MongoDB
     product = product_collection.find_one({"Product_id": product_id})
     if product:
+        original_price = product.get("original_price", 0)
+        discounted_price = product.get("discount_price", original_price)  # Use discount_price if available
+
         new_item = {
             "Product_id": product["Product_id"],
             "Product_name": product["Product_name"],
             "Description": product["Description"],
-            "Images": product["Images"][0],  # Take first image
-            "quantity": 1  # Initialize quantity
+            "Images": product["Images"][0] if isinstance(product["Images"], list) else "placeholder.jpg",
+            "quantity": 1,
+            "original_price": original_price,
+            "discounted_price": discounted_price
         }
-        cart.insert(0, new_item)  # Add new item to the beginning of the list
+        cart.insert(0, new_item)
         session.modified = True
         flash("Item added to cart!", "success")
-        return redirect(request.referrer)  # Redirect back to the same page
+        return redirect(request.referrer)
 
     flash("Product not found!", "error")
     return redirect(request.referrer)
+
 
 @app.route("/update_cart/<product_id>/<action>")
 def update_cart(product_id, action):
