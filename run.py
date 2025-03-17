@@ -2,7 +2,7 @@ from flask import Flask, render_template ,request, flash, redirect, url_for, ses
 from pymongo import MongoClient
 import random
 import os
-
+from bson import ObjectId
 
 
 app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
@@ -11,12 +11,16 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["hci"]
 product_collection = db["Product"]
 
+def get_product_by_id(product_id):
+    """ Fetch a single product by ID from MongoDB """
+    return product_collection.find_one({"Product_id": str(product_id)}) 
+
 @app.route("/")
 def index():
     products = list(product_collection.find())
-    random_products = random.sample(products, min(len(products), 3))
+    # random_products = random.sample(products, min(len(products), 3))
     # print("Random Products:", random_products)
-    return render_template("index.html", random_products=random_products)
+    return render_template("index.html", random_products=products)
 
 # ...
 @app.route('/about/')
@@ -86,6 +90,21 @@ def remove_from_cart(product_id):
     session["cart"] = [item for item in cart_items if item["Product_id"] != product_id]
     session.modified = True  
     return redirect(url_for("cart"))
+
+@app.route('/product/<product_id>')
+def product_details(product_id):
+    product = product_collection.find_one({"Product_id": product_id})  # Match by Product_id
+    
+    if product:
+        # Ensure Images is always a list
+        if isinstance(product.get("Images"), str):
+            product["Images"] = [product["Images"]]  # Convert single string to list
+        elif not isinstance(product.get("Images"), list):
+            product["Images"] = ["placeholder.jpg"]  # Default if missing
+
+        return render_template('view_details.html', product=product)
+
+    return "Product Not Found", 404
 
 
 if __name__ == '__main__':
