@@ -10,7 +10,7 @@
     <p>We have sent an OTP to your registered mobile number.</p>
     
     <form method="POST" action="{{ url_for('otp_page') }}">
-        <input type="text" name="otp" placeholder="Enter OTP" required>
+        <input type="password" name="otp" placeholder="Enter OTP" maxlength="6"required>
         <button type="submit" class="btn-primary">Confirm Payment</button>
     </form>
 </div>

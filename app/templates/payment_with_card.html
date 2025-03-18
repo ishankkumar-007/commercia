@@ -10,13 +10,33 @@
     
     <form method="POST" action="{{ url_for('pay_with_card') }}" class="checkout-form">
         <input type="text" name="card_name" placeholder="Cardholder Name" required>
-        <input type="text" name="card_number" placeholder="Card Number" maxlength="16" required>
+        <input type="text" id="card_number" name="card_number" placeholder="Card Number" maxlength="19" required>
         <div class="card-info">
-            <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
-            <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
+            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required>
+            <input type="password" name="cvv" placeholder="CVV" maxlength="3" required>
         </div>
         <button type="submit" class="btn-primary">Proceed to OTP</button>
     </form>
 </div>
+
+<script>
+// Auto-format card number: #### #### #### ####
+document.getElementById("card_number").addEventListener("input", function (e) {
+    let input = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    input = input.substring(0, 16); // Limit to 16 digits
+
+    let formatted = input.replace(/(\d{4})/g, "$1 ").trim(); // Add spaces every 4 digits
+    e.target.value = formatted;
+});
+
+// Auto-format expiry date: MM/YY
+document.getElementById("expiry").addEventListener("input", function (e) {
+    let input = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    if (input.length > 2) {
+        input = input.slice(0, 2) + "/" + input.slice(2, 4);
+    }
+    e.target.value = input;
+});
+</script>
 
 {% endblock %}
