@@ -32,10 +32,20 @@
 
     <!-- Summary -->
     <div class="summary">
-        <p>Subtotal: <strong>₹{{ subtotal }}</strong></p>
-        <p>Shipping: <strong>₹{{ shipping_fee }}</strong></p>
-        <p class="total">Total: <strong>₹{{ total }}</strong></p>
+        <div class="summary-item">
+            <span>Subtotal:</span> 
+            <span>₹1200</span>
+        </div>
+        <div class="summary-item">
+            <span>Shipping:</span> 
+            <span>₹0</span>
+        </div>
+        <div class="summary-item total">
+            <span>Total:</span> 
+            <span>₹1200</span>
+        </div>
     </div>
+    
 
     <!-- Fake Payment Form -->
     <form method="POST" action="{{ url_for('checkout') }}" class="checkout-form">

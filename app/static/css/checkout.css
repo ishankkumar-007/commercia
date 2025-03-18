@@ -65,21 +65,37 @@ hr {
 }
 
 .summary {
-    background: #ecf0f1; /*Light gray */
+    /* background: #ecf0f1; Light gray */
     padding: 15px;
     border-radius: 5px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adds spacing between rows */
+    max-width: 300px; /* Adjust width as needed */
+    text-align: left;
 }
 
-/* Total Price */
-.total {
-    font-size: 20px;
-    color: #e74c3c; /* Red color */
+.summary-item {
+    display: flex;
+    justify-content: start;
+    font-size: 16px;
     font-weight: bold;
+}
+
+.summary-item span {
+    width: 50%; /* Ensures both columns take equal space */
+    text-align: left; /* Aligns both text and numbers to the left */
+    font-size: 15px;
+}
+
+.total {
+    color: rgb(19, 18, 18);
+    font-size: 20px;
 }
 
 /* Checkout Form */
 .checkout-form {
+    border-top: 1px solid #ccc;
     display: flex;
     flex-direction: column;
     gap: 10px;
