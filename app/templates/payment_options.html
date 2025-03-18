@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Options{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+
+<div class="payment-container">
+    <h2>Select Payment Method</h2>
+    
+    <ul class="payment-options">
+        <li data-url="{{ url_for('pay_with_card') }}" onclick="redirectTo(this)">
+            <i class="fas fa-credit-card"></i> Pay with Card
+        </li>
+        <li data-url="#" onclick="redirectTo(this)">
+            <i class="fas fa-mobile-alt"></i> Pay with UPI
+        </li>
+        <li data-url="#" onclick="redirectTo(this)">
+            <i class="fas fa-wallet"></i> Pay with Wallet
+        </li>
+        <li data-url="#" onclick="redirectTo(this)" class="cod-option">
+            <i class="fas fa-truck"></i> Cash on Delivery
+        </li>
+    </ul>
+</div>
+
+<script>
+    function redirectTo(element) {
+        let url = element.getAttribute("data-url");
+        if (url) {
+            window.location.href = url;
+        }
+    }
+</script>
+
+{% endblock %}

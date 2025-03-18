@@ -38,7 +38,7 @@
     </div>
 
     <!-- Fake Payment Form -->
-    <form method="POST" action="{{ url_for('order_confirmation') }}" class="checkout-form">
+    <form method="POST" action="{{ url_for('checkout') }}" class="checkout-form">
         <h3>Shipping Details</h3>
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="text" name="address" placeholder="Shipping Address" required>
@@ -46,17 +46,10 @@
         <input type="text" name="pincode" placeholder="Pincode" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <input type="tel" name="phone" placeholder="Phone Number" required>
-
-        <h3>Payment Details</h3>
-        <input type="text" name="card_name" placeholder="Cardholder Name" required>
-        <input type="text" name="card_number" placeholder="Card Number" maxlength="16" required>
-        <div class="card-info">
-            <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
-            <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
-        </div>
-
-        <button type="submit" class="btn-primary">💳 Pay Now</button>
+        
+        <button type="submit" class="btn-primary">Proceed to Payment</button>
     </form>
+    
 
     <a href="{{ url_for('cart') }}" class="btn-secondary">← Back to Cart</a>
 </div>

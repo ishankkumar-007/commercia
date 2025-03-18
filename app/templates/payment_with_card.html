@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Pay with Card{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+
+<div class="payment-container">
+    <h2>Enter Card Details</h2>
+    
+    <form method="POST" action="{{ url_for('pay_with_card') }}" class="checkout-form">
+        <input type="text" name="card_name" placeholder="Cardholder Name" required>
+        <input type="text" name="card_number" placeholder="Card Number" maxlength="16" required>
+        <div class="card-info">
+            <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
+            <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
+        </div>
+        <button type="submit" class="btn-primary">Proceed to OTP</button>
+    </form>
+</div>
+
+{% endblock %}

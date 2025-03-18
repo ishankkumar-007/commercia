@@ -1,0 +1,215 @@
+/* Payment Page Container */
+/* Centering the payment box */
+.payment-container {
+    max-width: 400px;
+    margin:28.55vh auto; /* Centered vertically and horizontally */
+    padding: 12px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Title */
+h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Payment Options List */
+.payment-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.payment-options li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    border: #666;
+    border-left: 4px solid #ff9f43;
+}
+
+.payment-options li:hover {
+    background: #ececec;
+}
+
+/* Special styling for COD */
+/* .cod-option {
+    background: #ffeed9;
+    color: #d35400;
+    border-left: 4px solid #ff9f43;
+} */
+
+/* Icons */
+.payment-options li i {
+    font-size: 20px;
+    color: #6c63ff;
+}
+
+
+/* Heading style */
+.payment-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form styling */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Input fields */
+.checkout-form input {
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+/* Input focus effect */
+.checkout-form input:focus {
+    border-color: #FFA41C; /* Matching your theme */
+}
+
+/* Expiry and CVV in one row */
+.card-info {
+    display: flex;
+    gap: 10px;
+}
+
+.card-info input {
+    flex: 1;
+}
+
+/* Button styling */
+.btn-primary {
+    background: #FFA41C; /* Theme color */
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #e67e22; /* Slightly darker on hover */
+}
+/* Centering the OTP box */
+.otp-container {
+    max-width: 350px;
+    margin: 31.95vh auto; /* Centered vertically and horizontally */
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Heading style */
+.otp-container h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Paragraph text */
+.otp-container p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Input field */
+.otp-container input {
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: bold;
+    transition: border 0.3s ease;
+}
+
+/* Input focus effect */
+.otp-container input:focus {
+    border-color: #FFA41C; /* Theme color */
+}
+
+/* Button styling */
+.btn-primary {
+    background: #FFA41C; /* Matching theme color */
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #e67e22; /* Darker shade on hover */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .otp-container {
+        width: 90%;
+        top: 0;
+        transform: none;
+        margin-top: 50px;
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .payment-container {
+        width: 90%;
+        top: 0;
+        transform: none;
+        margin-top: 50px;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 400px) {
+    .payment-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .payment-options li {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
