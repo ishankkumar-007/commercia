@@ -145,14 +145,6 @@ Open your browser and go to:
 http://localhost:5000
 ```
 
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
 ## Notes
 
 * Tailwind styles can be customized in the `static/css` directory.
